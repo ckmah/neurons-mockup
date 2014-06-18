@@ -1,0 +1,180 @@
+@import "mixins.less";
+
+@minw: 800px;
+@minh: 600px;
+
+section {
+  .nopadmargin;
+  width: 90vw;
+  min-width: @minw;
+  height: 70vh;
+  min-height: @minh;
+  margin: 3em auto;
+  overflow: hidden;
+
+  .h1wrap {
+    width: auto;
+    height: 230px;
+    position: absolute;
+    font-size: 200px;
+    .nopadmargin;
+    opacity: 0.7;
+    bottom: 0.5em;
+    right: 0;
+    overflow: hidden;
+  }
+
+  h1 {
+    .nopadmargin;
+    font-size: 250px;
+    font-family: 'Open Sans';
+    font-weight: normal;
+  }
+}
+
+/******************** HOMEPAGE ********************/
+
+  #home {
+    position: relative;
+  }
+
+  @logoh: 400px;
+  #logo {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: 100px;
+
+    img {
+      display: inline-block;
+      height: @logoh;
+      width: @logoh;
+      // float: left;
+    }
+
+    p {
+      position: absolute;
+      display: inline-block;
+      // height: (@logoh/3);
+      top: (@logoh/3);
+      font-size: 48px;
+      .nopadmargin;
+      // float: right;
+    }
+  }
+
+/******************** ABOUT PAGE ********************/
+
+  #about {
+
+  }
+
+  #description {
+    margin: 100px auto;
+    max-width: @minw;
+    font-size: 18px;
+    line-height: 1.8em;
+    text-align: center;
+  }
+
+  #timeline {
+    position: relative;
+    margin: 1em auto;
+    width: @minw;
+    text-align: center;
+    opacity: 0.5;
+
+    @bardim: 2px; // actual bar dim is twice bardim
+    #bar {
+      position: absolute;
+      width: 100%;
+      border: solid 2px white;
+    }
+
+    @pointdim: 20px;
+    .point {
+      top: -@pointdim/2 + @bardim;
+      position: absolute;
+      border-radius: 1000px;
+      height: @pointdim;
+      width: @pointdim;
+      background-color: white;
+    }
+
+    #point1 {
+      top: -(0.8*@pointdim/2) + @bardim;
+      left: 70px;
+      height: 0.8*@pointdim;
+      width: 0.8*@pointdim;
+    }
+
+    #point2 {
+      top: -(1.3*@pointdim/2) + @bardim;
+      left: 200px;
+      height: 1.3*@pointdim;
+      width: 1.3*@pointdim;
+    }
+
+    #point3 {
+      top: -(0.6*@pointdim/2) + @bardim;
+      left: 450px;
+      height: 0.6*@pointdim;
+      width: 0.6*@pointdim;
+    }
+
+    #point4 {
+      right: 100px;
+    }
+  }
+
+/******************** OFFICER PAGE ********************/
+
+#officers {
+
+}
+
+#officer {
+  list-style: none;
+
+  @hexw: 150px;
+  @hexh: 180px;
+  li {
+    position: relative;
+    display: inline-block;
+    height: @hexh;
+    width: @hexw;
+    background: url('../assets/TerynJ.jpg') no-repeat;
+
+    .top {
+      position: absolute;
+      top: 0;
+      border-top: @hexh/8 solid black;
+      border-bottom: @hexh/8 solid transparent;
+    }
+
+    .bot {
+      position: absolute;
+      bottom: 0;
+      border-bottom: @hexh/8 solid black;
+      border-top: @hexh/8 solid transparent;
+
+    }
+
+    .left {
+      position: absolute;
+      left: 0;
+      border-left: @hexw/4 solid black;
+      border-right: @hexw/4 solid transparent;
+
+    }
+
+    .right {
+      position: absolute;
+      right: 0;
+      border-right: @hexw/4 solid black;
+      border-left: @hexw/4 solid transparent;
+
+    }
+  }
+
+}
