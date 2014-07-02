@@ -4,15 +4,16 @@
 @minh: 600px;
 
 section {
-  position: absolute;
-  .nopadmargin;
+  display: flex;
+  position: relative;
   width: 90vw;
   min-width: @minw;
-  height: 70vh;
+  height: 90vh;
   min-height: @minh;
-  margin: 3em auto;
+  margin: 5vh auto;
   overflow: hidden;
   opacity: 1;
+  top: 0;
   .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
 
   .h1wrap {
@@ -38,53 +39,44 @@ section {
 
   #home {
     position: relative;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
   }
 
   @logoh: 400px;
-  #logo {
-    position: absolute;
-    height: auto;
-    width: 100%;
-    top: 100px;
+  img {
+    width: @logoh;
+    opacity: 0.4;
+  }
 
-    img {
-      display: inline-block;
-      // height: @logoh;
-      width: @logoh;
-      opacity: 0.4;
-      // float: left;
-    }
+  #bmes {
+    font-size: 58px;
+    .nopadmargin;
+  }
 
-    #bmes {
-      position: absolute;
-      display: inline-block;
-      // height: (@logoh/3);
-      top: (@logoh/2);
-      font-size: 58px;
-      .nopadmargin;
-      // float: right;
-    }
-
-    #ucsd {
-      position: absolute;
-      display: inline-block;
-      top: (@logoh/2) + 80px;
-      font-size: 36px;
-    }
+  #ucsd {
+    font-size: 36px;
   }
 
 /******************** ABOUT PAGE ********************/
 
   #about {
-
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
   }
 
   #description {
-    margin: 100px auto;
+    width: 80%;
     max-width: @minw;
     font-size: 18px;
     line-height: 1.8em;
     text-align: center;
+    white-space: normal;
   }
 
   #timeline {
@@ -94,10 +86,11 @@ section {
     text-align: center;
     opacity: 0.5;
 
-    @bardim: 2px; // actual bar dim is twice bardim
+    @bardim: 2px; // actual bar thickness is twice bardim
     #bar {
       position: absolute;
-      width: 100%;
+      width: 90%;
+      margin: 0 auto;
       border: solid 2px white;
     }
 
@@ -153,38 +146,38 @@ section {
     display: inline-block;
     height: @hexh;
     width: @hexw;
-    background: url('../assets/TerynJ.jpg') no-repeat;
+    background: url('../assets/terynhex.png') no-repeat;
 
-    .top {
-      position: absolute;
-      top: 0;
-      border-top: @hexh/8 solid black;
-      border-bottom: @hexh/8 solid transparent;
-    }
+    // .top {
+    //   position: absolute;
+    //   top: 0;
+    //   border-top: @hexh/8 solid black;
+    //   border-bottom: @hexh/8 solid transparent;
+    // }
 
-    .bot {
-      position: absolute;
-      bottom: 0;
-      border-bottom: @hexh/8 solid black;
-      border-top: @hexh/8 solid transparent;
+    // .bot {
+    //   position: absolute;
+    //   bottom: 0;
+    //   border-bottom: @hexh/8 solid black;
+    //   border-top: @hexh/8 solid transparent;
 
-    }
+    // }
 
-    .left {
-      position: absolute;
-      left: 0;
-      border-left: @hexw/4 solid black;
-      border-right: @hexw/4 solid transparent;
+    // .left {
+    //   position: absolute;
+    //   left: 0;
+    //   border-left: @hexw/4 solid black;
+    //   border-right: @hexw/4 solid transparent;
 
-    }
+    // }
 
-    .right {
-      position: absolute;
-      right: 0;
-      border-right: @hexw/4 solid black;
-      border-left: @hexw/4 solid transparent;
+    // .right {
+    //   position: absolute;
+    //   right: 0;
+    //   border-right: @hexw/4 solid black;
+    //   border-left: @hexw/4 solid transparent;
 
-    }
+    // }
   }
 
 }
