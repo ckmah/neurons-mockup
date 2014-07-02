@@ -1,16 +1,26 @@
 @import "mixins.less";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+
 /**
  * Main theme including navbars and general content formatting.
  */
 
-/****************** ADD QUROA DIV OUTLINER **********************/
+@font-face {
+  font-family: 'Roboto';
+}
+
+/****************** ADD QUORA DIV OUTLINER **********************/
 
 body {
   background: black;
   color: white;
-  font-family: 'Open Sans';
-  outline: solid 1px white; // DEBUGGING NO-WIDTH OUTLINER
+  font-family: 'Roboto';
+  // outline: solid 1px white; // DEBUGGING NO-WIDTH OUTLINER
   overflow-y: hidden;
+  background: url('../assets/bg.png') no-repeat fixed;
+  background-size: cover;
+  .nopadmargin;
 }
 
 nav {
@@ -20,18 +30,33 @@ nav {
   z-index: 100;
   width: 100vw;
 
+  #navslide {
+    position: absolute;
+    top: -2px;
+    height: 26px;
+    background-color: rgba(255,255,255,0.3);
+    z-index: -1;
+    border-radius: 10px;
+    .transition(~"width 0.2s ease-in-out, left 0.2s ease-in-out");
+  }
+
   ul {
     list-style: none;
     .nopadmargin;
     margin: 0 auto;
     text-align: center;
     white-space: nowrap;
+    z-index: 2;
 
     li {
       display: inline-block;
       padding: 0 1em;
       margin: 0 auto;
+      font-size: 18px;
+      &:hover { cursor: pointer; }
+
     }
+
   }
 }
 

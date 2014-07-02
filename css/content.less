@@ -4,6 +4,7 @@
 @minh: 600px;
 
 section {
+  position: absolute;
   .nopadmargin;
   width: 90vw;
   min-width: @minw;
@@ -11,6 +12,8 @@ section {
   min-height: @minh;
   margin: 3em auto;
   overflow: hidden;
+  opacity: 1;
+  .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
 
   .h1wrap {
     width: auto;
@@ -31,7 +34,6 @@ section {
     font-weight: normal;
   }
 }
-
 /******************** HOMEPAGE ********************/
 
   #home {
@@ -47,19 +49,27 @@ section {
 
     img {
       display: inline-block;
-      height: @logoh;
+      // height: @logoh;
       width: @logoh;
+      opacity: 0.4;
       // float: left;
     }
 
-    p {
+    #bmes {
       position: absolute;
       display: inline-block;
       // height: (@logoh/3);
-      top: (@logoh/3);
-      font-size: 48px;
+      top: (@logoh/2);
+      font-size: 58px;
       .nopadmargin;
       // float: right;
+    }
+
+    #ucsd {
+      position: absolute;
+      display: inline-block;
+      top: (@logoh/2) + 80px;
+      font-size: 36px;
     }
   }
 
