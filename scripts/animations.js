@@ -174,11 +174,10 @@ function navliHover() {
     $slide.width(width);
 
   }, function() { // mouse leaves element
-    // move back to highlight active section
 
-    var $slide = $('#navslide');
+    var $slide = $('#navslide'); // reference to slider
 
-    $slide.css({
+    $slide.css({ // move back to highlight active section
       'left': $('#to' + $activeSection.attr('id')).position().left,
       'width': $('#to' + $activeSection.attr('id')).outerWidth()
     });

@@ -71,15 +71,16 @@ nav {
   white-space: nowrap;
   z-index: 100;
 
-  @itemdim: 2em;
+  @itemdim: 3em;
   li {
     width: @itemdim;
     height: @itemdim;
-    background-color: rgba(255,255,255,0.3);
+    // background-color: rgba(255,255,255,0.3);
     border-radius: 1000px;
     padding: 0.2em;
     margin: 0.2em;
     display: inline-block;
+    opacity: 0.6;
 
     img {
       width: @itemdim;
@@ -89,10 +90,11 @@ nav {
       text-align: center;
     }
 
-    .transition(~"background-color 0.2s ease-in-out");
+    .transition(~"opacity 0.2s ease-in-out");
 
     &:hover {
-      background-color: rgba(255,255,255,0.5);
+      // background-color: rgba(255,255,255,0.5);
+      opacity: 1;
     }
   }
 }
