@@ -2,6 +2,10 @@
 
 .nopadmargin { padding: 0; margin: 0 auto; }
 
+.absolutecenter { margin: auto; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+.verticalcenter { margin: auto; position: absolute; top: 0; right: 0; }
+
 .gradient (@origin: left, @start: #ffffff, @stop: #000000) {
     background-color: @start;
     background-image: -webkit-linear-gradient(@origin, @start, @stop);
@@ -29,6 +33,16 @@
     filter: drop-shadow(@x @y @blur @color);
     -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(@x, @y, @color)";
     filter: "progid:DXImageTransform.Microsoft.Dropshadow(@x, @y, @color)";
+}
+
+.filter(@filters) {
+    filter: @filters;
+    -webkit-filter: @filters;
+}
+
+.blur (@px) {
+    filter: blur(@px);
+    -webkit-filter: blur(@px);
 }
 
 .rotate (@rotate) {

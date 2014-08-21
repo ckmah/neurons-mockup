@@ -6,28 +6,95 @@
  * Main theme including navbars and general content formatting.
  */
 
+/******************** GENERAL FORMATTING ********************/
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto', 'Open Sans';
 }
-
-/****************** ADD QUORA DIV OUTLINER **********************/
 
 body {
   background: black;
   color: white;
-  font-family: 'Roboto';
-  // outline: solid 1px white; // DEBUGGING NO-WIDTH OUTLINER
-  overflow-y: hidden;
-  background: url('../assets/bg.png') no-repeat fixed;
-  background-size: cover;
+  font-family: 'Roboto', 'Open Sans';
+  overflow: hidden;
   .nopadmargin;
 }
 
+h2 {
+  font-family: 'Roboto';
+  font-size: 56px;
+  font-weight: normal;
+  margin: .5em 0;
+}
+
+@bgw: (100vw + 5*5vw); // parallax stepval = 5vw, 5 = # pages - 1
+@bgh: 100vh;
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('../assets/bg.png') no-repeat center;
+  background-size: 100% auto !important;
+  width: @bgw;
+  height: @bgh;
+  .filter(blur(10px) brightness(0.7));
+  .transition(~"all 1s cubic-bezier(0.165, 0.84, 0.44, 1)");
+}
+
+#hexagons {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: url('../assets/hexBg.png') no-repeat;
+  background-size: cover;
+  width: 2000px;
+  height: 100vh;
+  opacity: 0.1;
+  .transition(~"all 1s cubic-bezier(0.165, 0.84, 0.44, 1)");
+}
+
+  .photos { // general bulk photo format on website
+    list-type: none;
+
+    @photow: 15em;
+    @photoh: 10em;
+    li { // element format
+      display: inline-block;
+      position: relative;
+      width: @photow;
+      height: @photoh;
+      margin: 1.5em 1em;
+
+      @cOverlay: rgba(0,70,100,0.35);
+      .colorOverlay { // color filter
+        position: absolute;
+        background-color: @cOverlay;
+        border: 1px solid #a8b6c4; // covers img border
+        // border-radius: 3px;
+        width: @photow;
+        height: @photoh;
+        z-index: 5;
+        opacity: 1;
+        .transition(~"opacity 0.25s ease-in-out");
+        &:hover { opacity: 0; } // fades on hover
+      }
+
+      img { // basic image format
+        position: absolute;
+        // border-radius: 3px;
+        width: @photow;
+        opacity: 0.9;
+        border: 1px solid #c6d1de; // shows on hover
+        .drop-shadow(0, 0, 2px, #222);
+      }
+    }
+  }
+
+/******************** NAVIGATION BAR ********************/
 nav {
   .nopadmargin;
   top: 0.5em;
   position: fixed;
-  z-index: 100;
+  z-index: 2;
   width: 100vw;
 
   #navslide {
@@ -36,7 +103,7 @@ nav {
     height: 26px;
     background-color: rgba(255,255,255,0.3);
     z-index: -1;
-    border-radius: 10px;
+    border-radius: 5px;
     .drop-shadow(0,1px,1px,black);
     padding: 0;
     -webkit-backface-visibility: hidden; // hotfix prevents artifacts
@@ -56,13 +123,14 @@ nav {
       padding: 0 1em;
       margin: 0 auto;
       font-size: 18px;
-      &:hover { cursor: pointer; }
-
+      opacity: 0.6;
+      .transition(~"opacity 0.2s, ease-in-out");
+      &:hover { cursor: pointer; opacity: 1; }
     }
-
   }
 }
 
+/******************** SOCIAL MEDIA ********************/
 .social_media {
   position: fixed;
   right: 0;
@@ -75,12 +143,13 @@ nav {
   li {
     width: @itemdim;
     height: @itemdim;
-    // background-color: rgba(255,255,255,0.3);
     border-radius: 1000px;
     padding: 0.2em;
     margin: 0.2em;
     display: inline-block;
     opacity: 0.6;
+    &:hover { opacity: 1; .scale(1.2); }
+    .transition(~"all 0.2s ease-in-out");
 
     img {
       width: @itemdim;
@@ -88,13 +157,6 @@ nav {
       outline: none;
       border: none;
       text-align: center;
-    }
-
-    .transition(~"opacity 0.2s ease-in-out");
-
-    &:hover {
-      // background-color: rgba(255,255,255,0.5);
-      opacity: 1;
     }
   }
 }

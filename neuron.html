@@ -1,53 +1,76 @@
 <HTML DOCTYPE>
-  <head>
-    <!-- media query -->
-    <link rel="stylesheet" href="css/theme.css">
-    <link rel="stylesheet" href="css/content.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="scripts/animations.js"></script>
+<head>
+  <!-- media query -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/content.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/events.js"></script>
+  <script src="scripts/home.js"></script>
+  <script src="scripts/myutil.js"></script>
 
-  </head>
-  <body>
-    <nav>
-      <ul><!--
-        --><li id="tohome">HOME</li><!--
-        --><li id="toabout">ABOUT</li><!--
-        --><li id="toevents">EVENTS</li><!--
-        --><li id="togallery">GALLERY</li><!--
-        --><li id="tomembership">MEMBERSHIP</li><!--
-        --><li id="toofficers">OFFICERS</li><!--
-      --><li id="tocontact">CONTACT</li>
+</head>
+<body>
+  <nav>
+    <ul><li id="tohome">HOME</li><li id="toabout">ABOUT</li><li id="toevents">EVENTS</li><!-- <li id="togallery">GALLERY</li> --><li id="tomembership">MEMBERSHIP</li><li id="toofficers">OFFICERS</li><!--
+    --><li id="tocontact">CONTACT</li>
     </ul>
   </nav>
-    <ul class="social_media"><!--
-      --><li><img src="assets/fb.png" alt="f"></li><!--
-      --><li><img src="assets/tw.png" alt="t"></li><!--
-    --><li><img src="assets/yt.png" alt="y"></li>
+  <ul class="social_media"><!--
+    --><li><img src="assets/fb.png" alt="f"></li><!--
+    --><li><img src="assets/tw.png" alt="t"></li><!--
+  --><li><img src="assets/yt.png" alt="y"></li>
   </ul>
-
+  <div id="bg"></div>
+  <div id="hexagons"></div>
+  <div id="cover"></div>
   <section id="home" data-index="0">
-    <img src="assets/bmes_logo.png" alt="">
-    <div><div id="bmes">Biomedical Engineering Society</div><div id="ucsd">University of California, San Diego</div></div>
+    <img src="assets/bmes_logo.png" alt="BMES logo">
+    <div><div id="bmes">Biomedical Engineering Society</div><div id="ucsd">University of California, San Diego</div><div id="testimonials">"There is only one way to avoid criticism: do nothing, say nothing, and be nothing." -Aristotle</div></div>
   </section>
   <section id="about" data-index="1">
-    <div class="h1wrap"><!-- <h1>About</h1> --></div>
+    <iframe src="http://player.vimeo.com/video/96748717?title=0&amp;byline=0&amp;portrait=0" frameborder="0"></iframe>
     <p id="description">The Biomedical Engineering Society (BMES) at the University of California, San Diego (UCSD) is dedicated to enriching the undergraduate experience for the Department of Bioengineering and those interested in Biomedical Engineering by fostering personal growth and professional development. We encourage undergraduates to get involved with their education and start making a difference today. Whether it's the fun socials with our Mentor-Mentee committee, planning our big pro-dev events with BE Day/Lab Expo, writing with BE Quarterly, or reaching out and teaching with Outreach, come be a part of BMES at UCSD!</p>
+  </section>
+  <section id="events" data-index="2">
     <div id="timeline">
       <div id="bar"></div>
-      <div class="point" id="point1"></div>
-      <div class="point" id="point2"></div>
-      <div class="point" id="point3"></div>
-      <div class="point" id="point4"></div>
+      <div id="nodewrap"><!--
+         --><div class="node" id="node1"></div><!--
+         --><div class="node" id="node2"></div><!--
+         --><div class="node" id="node3"></div><!--
+         --><div class="node" id="node4"></div>
+      </div>
     </div>
+    <div class="event_page" id="page1">
+      <div class="back"><div></div></div>
+      <div class="event_gallery"><!--
+         --><img class="gallery_pic" src="assets/beDay1.jpg"></img><!--
+         --><div class="gallery_left gallery_arrow"></div><!--
+         --><div class="gallery_right gallery_arrow"></div><!--
+         --><div class="gallery_slides"><!--
+          --><img src="assets/beDay1.jpg"></img><!--
+          --><img src="assets/beDay2.jpg"></img><!--
+        --></div>
+      </div>
+
+      <div class="event_text"><h2>Bioengineering Day</h2><p> Bioengineering day is a unique forum for networking between our industrial partners and the bioengineering community at UC San Diego. The undergraduate and graduate research symposia celebrate the accomplishments of our students and provide opportunities for collaboration between industry, alumni, faculty, and students. BE Day features a keynote speaker, a variety of graduate research presentations, a poster expo, an industry panel discussion, and a networking reception.</p>
+      </div>
+    </div>
+    <div class="event_page" id="page2"></div>
+    <div class="event_page" id="page3"></div>
+    <div class="event_page" id="page4"></div>
   </section>
-  <section id="events" data-index="2"></section>
-  <section id="gallery" data-index="3"></section>
+
   <section id="membership" data-index="4"></section>
   <section id="officers" data-index="5">
-      <ul id="officer"><!--
-      --><li><div class="top right"></div><div class="top left"></div><div class="bot left"></div><div class="bot right"></div></li>
+      <img id="officerphoto"src="assets/officerGrid.png" alt="">
+      <ul id="officer">
     </ul>
   </section>
-  <section id="contact" data-index="6"></section>
+  <section id="contact" data-index="6">
+    <h1>contact us</h1>
+    <p>Please contact us at: <a href="mailto:bme">bmes.ucsandiego@gmail.com</a></p>
+  </section>
 </body>
 </HTML>

@@ -1,17 +1,19 @@
 @import "mixins.less";
 
+@maxw: 70vw;
+@maxh: 90vh;
 @minw: 800px;
 @minh: 600px;
 
 section {
   display: flex;
   position: relative;
-  width: 90vw;
+  max-width: @maxw;
   min-width: @minw;
-  height: 90vh;
+  max-height: @maxh;
   min-height: @minh;
   margin: 5vh auto;
-  overflow: hidden;
+  z-index: 4;
   opacity: 1;
   top: 0;
   .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
@@ -30,26 +32,31 @@ section {
 
   h1 {
     .nopadmargin;
-    font-size: 250px;
+    position: absolute;
+    font-size: 150px;
+    opacity: 0.5;
+    padding: 0.5em 0 0 0;
     font-family: 'Open Sans';
     font-weight: normal;
   }
 }
+
 /******************** HOMEPAGE ********************/
   #home {
+    max-width: 90vw;
+    height: @maxh;
     position: relative;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
   }
 
   @logoh: 400px;
   #home > img {
     width: @logoh;
-    opacity: 0.4;
-    // mix-blend-mode: overlay;
+    opacity: 0.8;
+    // .transition(~"opacity 0.3s linear");
   }
 
   #bmes {
@@ -61,8 +68,13 @@ section {
     font-size: 36px;
   }
 
-/******************** ABOUT PAGE ********************/
+  #testimonials {
+    padding-top: 2em;
+    font-style: italic;
+    .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
+  }
 
+/******************** ABOUT PAGE / GALLERY ********************/
   #about {
     flex-direction: column;
     flex-wrap: nowrap;
@@ -70,114 +82,228 @@ section {
     justify-content: space-around;
   }
 
+  #about iframe {
+    margin: 1em;
+    width: 80vw;
+    max-width: 800px;
+    height: 65vh;
+    max-height: 650px;
+  }
+
   #description {
     width: 80%;
     max-width: @minw;
-    font-size: 18px;
     line-height: 1.8em;
     text-align: center;
     white-space: normal;
   }
 
+/******************** EVENTS ********************/
+  #events {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  @nodedim: 20px;
+  @bardim: 2px; /* actual bar thickness is twice bardim */
   #timeline {
+    display: flex;
+    align-items: center;
     position: relative;
     margin: 1em auto;
-    width: @minw;
+    width: 100%;
+    height: @nodedim;
     text-align: center;
-    opacity: 0.5;
+    border-radius: 3px;
+    opacity: 0.3;
+    left: 0;
+    .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
 
-    @bardim: 2px; // actual bar thickness is twice bardim
     #bar {
       position: absolute;
-      width: 90%;
-      margin: 0 auto;
-      border: solid 2px white;
+      width: 100%;
+      height: @bardim;
+      background: white;
+      top: @nodedim/2 - @bardim/2;
+      .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
     }
 
-    @pointdim: 20px;
-    .point {
-      top: -@pointdim/2 + @bardim;
+    #nodewrap {
+      position: relative;
+      width: 100%;
+      height: @nodedim;
+    }
+
+    .node {
       position: absolute;
       border-radius: 1000px;
-      height: @pointdim;
-      width: @pointdim;
-      background-color: white;
+      height: @nodedim;
+      width: @nodedim;
+      background-color: white; // transparent
+      &:hover { .scale(1.5); background-color: white; };
+      .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
     }
 
-    #point1 {
-      top: -(0.8*@pointdim/2) + @bardim;
-      left: 70px;
-      height: 0.8*@pointdim;
-      width: 0.8*@pointdim;
+    #node1 { left: 70px; }
+    #node2 { left: 200px; }
+    #node3 { left: 450px; }
+    #node4 { right: 100px; }
+  }
+
+  #cover {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 3;
+    opacity: 0;
+    .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
+  }
+
+  .event_page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    z-index: 5;
+    .transition(~"all 1s cubic-bezier(0.165, 0.84, 0.44, 1)");
+  }
+
+  @backdim: 3em;
+  .back {
+    position: relative;
+    border-radius: 100%;
+    width: @backdim;
+    height: @backdim;
+    background: rgba(255,255,255,0.5);
+    opacity: 0.3;
+    .transition(~"opacity 0.1s");
+    &:hover { opacity: 0.6; }
+
+    div {
+      position: absolute;
+      margin: @backdim/3.5;
+      border-top: @backdim/5 solid transparent;
+      border-bottom: @backdim/5 solid transparent;
+      border-right: @backdim/3 solid white;
+      // opacity: 0.5;
+      height: 0;
+      width: 0;
+    }
+  }
+
+  .event_gallery {
+    width: 80%;
+    height: 60%;
+    position: relative;
+    white-space: nowrap;
+    background: rgba(0,0,0,0.8);
+    outline: solid 1px rgba(255,255,255,0.3);
+    overflow: hidden;
+
+    .gallery_pic {
+      margin: 0 auto;
+      display: block;
+      position: static;
+      height: 100%;
+      .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
     }
 
-    #point2 {
-      top: -(1.3*@pointdim/2) + @bardim;
-      left: 200px;
-      height: 1.3*@pointdim;
-      width: 1.3*@pointdim;
+    @arrowdim: 2em;
+    .gallery_arrow {
+      height: @arrowdim;
+      width: @arrowdim;
+      background: black;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      outline: solid 1px white;
+      .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
     }
 
-    #point3 {
-      top: -(0.6*@pointdim/2) + @bardim;
-      left: 450px;
-      height: 0.6*@pointdim;
-      width: 0.6*@pointdim;
+    .gallery_left {
+      left: 0;
     }
 
-    #point4 {
-      right: 100px;
+    .gallery_right {
+      right: 0;
     }
+
+    .gallery_slides {
+      position: absolute;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      left: 0;
+      bottom: 0;
+      height: @minh/4;
+      width: 100%;
+      overflow: hidden;
+      background: rgba(0,0,0,0.7);
+      .transition(~"all 0.25s linear");
+
+      img {
+        height: 80%;
+        margin: 0 0.5em;
+        border-radius: 3px;
+        opacity: 0.7;
+        border: 1px solid rgba(255,255,255,0.8);
+        .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
+        &:hover { opacity: 1; }
+      }
+
+      .activeImg {
+        border: 2px solid rgba(255,255,255,0.8);
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .event_text {
+    // width: 100%;
+    margin: 0 2em;
   }
 
 /******************** OFFICER PAGE ********************/
-
-#officers {
-
-}
-
-#officer {
-  list-style: none;
-
-  @hexw: 150px;
-  @hexh: 180px;
-  li {
-    position: relative;
-    display: inline-block;
-    height: @hexh;
-    width: @hexw;
-    background: url('../assets/terynhex.png') no-repeat;
-
-    // .top {
-    //   position: absolute;
-    //   top: 0;
-    //   border-top: @hexh/8 solid black;
-    //   border-bottom: @hexh/8 solid transparent;
-    // }
-
-    // .bot {
-    //   position: absolute;
-    //   bottom: 0;
-    //   border-bottom: @hexh/8 solid black;
-    //   border-top: @hexh/8 solid transparent;
-
-    // }
-
-    // .left {
-    //   position: absolute;
-    //   left: 0;
-    //   border-left: @hexw/4 solid black;
-    //   border-right: @hexw/4 solid transparent;
-
-    // }
-
-    // .right {
-    //   position: absolute;
-    //   right: 0;
-    //   border-right: @hexw/4 solid black;
-    //   border-left: @hexw/4 solid transparent;
-
-    // }
+  #officerphoto {
+    margin: 5em auto;
+    height: 671px; // abs dimension
+    width: 671px;
   }
 
-}
+  #officer {
+    list-style: none;
+
+    @hexw: 150px;
+    @hexh: 180px;
+    li {
+      position: relative;
+      display: inline-block;
+      height: @hexh;
+      width: @hexw;
+      background: url('../assets/terynhex.png') no-repeat;
+    }
+  }
+
+/******************** CONTACT ********************/
+  #contact {
+    p {
+      font-size: 36px;
+      margin: 8em auto;
+
+      a {
+        text-decoration: none;
+        color: #AAF;
+        .transition(~"color 0.2s linear");
+        &:hover{ color: #88F; }
+      }
+    }
+  }
