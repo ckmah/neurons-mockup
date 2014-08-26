@@ -112,15 +112,7 @@ function animNodeBack() {
   $('#timeline').css("display", "flex");
 
   setTimeout(function() {
-    $activeNode.css({
-      "opacity": 1,
-      "webkitTransform": "scale(1)",
-      "MozTransform": "scale(1)",
-      "msTransform": "scale(1)",
-      "OTransform": "scale(1)",
-      "transform": "scale(1)",
-      "background": "white"
-    });
+    $activeNode.removeAttr('style');
   }, 300);
 }
 
