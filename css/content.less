@@ -142,7 +142,7 @@ section {
       height: @nodedim;
       width: @nodedim;
       background-color: white; // transparent
-      &:hover { .scale(1.5); background-color: white; };
+      &:hover { .transform(scale(1.5)); background-color: white; };
       .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
     }
 
@@ -174,26 +174,32 @@ section {
     .transition(~"all 1s cubic-bezier(0.165, 0.84, 0.44, 1)");
   }
 
-  @backdim: 3em;
+  @backdim: 48px;
   .back {
-    position: relative;
+    top: 0;
+    right: 0;
+    position: absolute;
     border-radius: 100%;
     width: @backdim;
     height: @backdim;
     background: rgba(255,255,255,0.5);
     opacity: 0.3;
-    .transition(~"opacity 0.1s");
-    &:hover { opacity: 0.6; }
+    .drop-shadow(0,0,2px,black);
+    .transform(rotate(45deg));
+    .transition(~"all 0.2s linear");
+    &:hover { opacity: 0.6; .transform(rotate(135deg)); }
 
     div {
       position: absolute;
-      margin: @backdim/3.5;
-      border-top: @backdim/5 solid transparent;
-      border-bottom: @backdim/5 solid transparent;
-      border-right: @backdim/3 solid white;
+      margin: 0 6px;
+      font-size: 36px;
+      text-align: center;
+      // border-top: @backdim/5 solid transparent;
+      // border-bottom: @backdim/5 solid transparent;
+      // border-right: @backdim/3 solid white;
       // opacity: 0.5;
-      height: 0;
-      width: 0;
+      height: 36px;
+      width: 36px;
     }
   }
 

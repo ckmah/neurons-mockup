@@ -85,13 +85,15 @@ function animPage() {
     fadeIn($cover);
     $cover.css('display', 'block');
 
-  }, 200);
+  }, 250);
 
   // fade in corresponding pages
   $activePage = $('#page' + $activeNode.attr('id').substring(4)); // reference to page section
   setTimeout(function() {
 
     fadeIn($activePage);
+    $img = $('#' + $activePage.attr('id') + ' .gallery_slides' + ' img:first-child');
+    selectGalleryImage($img);
   }, 1100);
 }
 
@@ -126,11 +128,11 @@ function animNodeBack() {
  * Animation for timeline on back function
  */
 function animTimelineBack() {
-    fadeIn($('#bar'));
-    $('.node').not($activeNode).each(function() {
-      fadeIn($(this));
-    });
-    $('#bg').css('background-image', defaultBg);
+  fadeIn($('#bar'));
+  $('.node').not($activeNode).each(function() {
+    fadeIn($(this));
+  });
+  $('#bg').css('background-image', defaultBg);
 }
 
 ////////// EVENT GALLERIES //////////
@@ -174,6 +176,7 @@ function animGallery() {
 function setActiveImg($image) {
   $('.gallery_slides img').removeClass('activeImg');
   $image.addClass('activeImg');
+  console.log($image.attr('src') + "is active img");
 }
 
 function showGalleryControls() {
@@ -188,7 +191,7 @@ function hideGalleryControls() {
 }
 
 function selectGalleryImage($image) {
-  console.log($image);
+  console.log($image + 'and length: ' + $image.length);
   if ($image.length > 0) { // valid reference
     setActiveImg($image);
     var imageLink = $image.attr('src');
@@ -206,21 +209,6 @@ function selectGalleryImage($image) {
   return;
 }
 
-// events jquery tab widget
-function showTab(section, element) {
-  setTimeout(function() {
-    $('.' + section).css('display', 'none')
-  }, 200);
-  $('.' + section).css('opacity', '0');
-
-  setTimeout(function() {
-    $('#' + section + element.value).css({
-      'display': 'block',
-      'opacity': '1'
-    });
-  }, 200);
-}
-
 /**
  * Init event subpage css display
  */
@@ -231,23 +219,10 @@ function initPages() {
 function initGalleries() {
   $('.gallery_arrow').css('display', 'none');
   $('.gallery_slides').css('display', 'none');
-  setActiveImg($('.gallery_slides img:first-child'));
-  defaultBg = $('#bg').css('background-image');
+  defaultBg = $('#bg').css('background-image'); // save reference to default bg
 }
 
 $(document).ready(function() {
-  // // hide all tabs
-  // $('.tab').css({
-  //   'display': 'none',
-  //   'opacity': '0'
-  // });
-
-  // // only show tab 1
-  // $('#tab1').css({
-  //   'display': 'block',
-  //   'opacity': '1'
-  // });
-
   initPages();
   initGalleries();
   animEvents();
