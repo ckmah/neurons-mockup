@@ -2,8 +2,8 @@
 
 @maxw: 70vw;
 @maxh: 90vh;
-@minw: 800px;
-@minh: 600px;
+@minw: 1024px;
+@minh: 650px;
 
 section {
   display: flex;
@@ -15,30 +15,7 @@ section {
   margin: 5vh auto;
   z-index: 4;
   opacity: 1;
-  top: 0;
   .transition(~"all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1)");
-
-  .h1wrap {
-    width: auto;
-    height: 230px;
-    position: absolute;
-    font-size: 200px;
-    .nopadmargin;
-    opacity: 0.7;
-    bottom: 0.5em;
-    right: 0;
-    overflow: hidden;
-  }
-
-  h1 {
-    .nopadmargin;
-    position: absolute;
-    font-size: 150px;
-    opacity: 0.5;
-    padding: 0.5em 0 0 0;
-    font-family: 'Open Sans';
-    font-weight: normal;
-  }
 }
 
 /******************** HOMEPAGE ********************/
@@ -79,20 +56,21 @@ section {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-around;
+    // justify-content: space-around;
   }
 
   #about iframe {
     margin: 1em;
-    width: 80vw;
-    max-width: 800px;
-    height: 65vh;
-    max-height: 650px;
+    width: 80%;
+    max-width: @minw;
+    height: 60%;
+    max-height: @maxh;
   }
 
   #description {
     width: 80%;
     max-width: @minw;
+    font-size: 18px;
     line-height: 1.8em;
     text-align: center;
     white-space: normal;
@@ -152,19 +130,6 @@ section {
     #node4 { right: 100px; }
   }
 
-  #cover {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    z-index: 3;
-    opacity: 0;
-    .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
-  }
-
   .event_page {
     display: flex;
     flex-direction: column;
@@ -204,7 +169,7 @@ section {
   }
 
   .event_gallery {
-    width: 80%;
+    width: 70%;
     height: 60%;
     position: relative;
     white-space: nowrap;
@@ -249,8 +214,8 @@ section {
       align-items: center;
       justify-content: center;
       left: 0;
-      bottom: 0;
-      height: @minh/4;
+      bottom: -1%;
+      height: @minh/6;
       width: 100%;
       overflow: hidden;
       background: rgba(0,0,0,0.7);
@@ -279,37 +244,277 @@ section {
   }
 
 /******************** OFFICER PAGE ********************/
-  #officerphoto {
-    margin: 5em auto;
-    height: 671px; // abs dimension
-    width: 671px;
-  }
+#officers {
+  top: 5%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
 
-  #officer {
-    list-style: none;
+#officer_grid {
+  padding: 0;
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  list-style: none;
+  .transition(~"all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)");
 
-    @hexw: 150px;
-    @hexh: 180px;
-    li {
-      position: relative;
-      display: inline-block;
-      height: @hexh;
-      width: @hexw;
-      background: url('../assets/terynhex.png') no-repeat;
-    }
-  }
 
-/******************** CONTACT ********************/
-  #contact {
-    p {
-      font-size: 36px;
-      margin: 8em auto;
+  @borderval: solid 1px rgba(0,0,0,0.8);
+  @min-width: 125px;
+  @width: 15%;
+  @min-height: 150px;
+  @height: 25%;
+  .officer {
+    position: relative;
+    min-width: @min-width;
+    width: @width;
+    min-height: @min-height;
+    height: @height;
+    margin: .5em;
+    overflow: visible;
+    .transition(~"all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)");
 
-      a {
-        text-decoration: none;
-        color: #AAF;
-        .transition(~"color 0.2s linear");
-        &:hover{ color: #88F; }
+
+    @roundcorner: 5px;
+    .mugshot {
+      dipslay: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0.7;
+      border-radius: @roundcorner;
+      // border-bottom: @borderval;
+      .transition(~"all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)");
+
+      img {
+        position: absolute;
+        width: 100%;
       }
     }
+
+    .officer_label {
+      top: 100%;
+      position: absolute;
+      width: 100%;
+      height: 0%;
+      opacity: 0;
+      border-bottom-left-radius: @roundcorner;
+      border-bottom-right-radius: @roundcorner;
+      .gradient(bottom,rgba(0,0,0,255) 60%, rgba(0,0,0,0));
+      .transition(~"all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)");
+
+      .officer_name {
+        .nopadmargin;
+        position: absolute;
+        left: 5%;
+        bottom: 15%;
+      }
+
+      .officer_more {
+        .nopadmargin;
+        position: absolute;
+        right: 5%;
+        bottom: 15%;
+        font-size: 12px;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    .mugshotclick {
+      height: 100% !important;
+      opacity: 1 !important;
+      top: 0 !important;
+    }
+
+    .officer_labelclick {
+      height: 0% !important;
+      opacity: 0 !important;
+      top: 0% !important;
+    }
+
+    .officerup {
+      height: 90%;
+      opacity: 1;
+      top: -5%;
+    }
+
+    .officerdown {
+      height: 40%;
+      opacity: 1;
+      top: 65%;
+    }
   }
+
+  .officerclick {
+    top: 50%;
+    left: 50%;
+    background: rgba(0,0,0,0.8);
+  }
+}
+
+#officer_bio {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  .nopadmargin;
+  .transition(~"all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)");
+
+  .bio_container {
+    opacity: 0;
+    display: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    list-style: none;
+    width: 0;
+    height: 0;
+    .transition(~"all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1)");
+
+    img {
+      border-radius: 5px;
+      width: 250px;
+      margin: 1em 0;
+    }
+
+    span {
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .position {
+      font-size: 16px;
+    }
+
+    p {
+      margin: 1em 0;
+      width: 50%;
+    }
+  }
+
+  .activebc {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    margin: 10% 10%;
+    opacity: 1;
+  }
+
+  #bio_back {
+    background: url('../assets/back-icon.png') no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 0;
+    right: 128px;
+    opacity: 0.7;
+    .transition(~"opacity 0.2s linear");
+    &:hover { opacity: 1; }
+
+  }
+}
+
+/******************** CONTACT ********************/
+#contact {
+  flex-direction: column;
+  // flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 64px;
+}
+
+@contactmdim: 150px;
+#contact_main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .contact_methods {
+    position: relative;
+    // padding: 0 2em;
+    margin: 2em 2em;
+    height: @contactmdim;
+    width: @contactmdim;
+
+    img {
+      position: absolute;
+      top: @contactmdim/6;
+      left: @contactmdim/6;
+      opacity: 1;
+      width: @contactmdim*2/3;
+      height: @contactmdim*2/3;
+      border-radius: 100%;
+      .transition(~"all 0.1s linear");
+    }
+
+    .contact_info {
+      padding: @contactmdim/3 0;
+      position: absolute;
+      .transition(~"all 0.1s linear");
+    }
+  }
+
+  #contact_divider {
+    width: 100%;
+    border-top: solid 1px white;
+    opacity: 0.5;
+  }
+}
+
+#contact_social {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .contact_methods {
+    position: relative;
+    margin: 2e. 4em;
+    height: @contactmdim;
+    width: @contactmdim;
+
+    img {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      opacity: 0.6;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      .transition(~"all 0.1s linear");
+      &:hover { opacity: 1; }
+    }
+
+    .contact_info {
+      padding: 50px 0;
+      position: absolute;
+      .transition(~"all 0.1s linear");
+    }
+  }
+}

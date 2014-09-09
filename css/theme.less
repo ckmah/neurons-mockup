@@ -49,52 +49,66 @@ h2 {
   width: 2000px;
   height: 100vh;
   opacity: 0.1;
+  z-index: 2;
   .transition(~"all 1s cubic-bezier(0.165, 0.84, 0.44, 1)");
 }
 
-  .photos { // general bulk photo format on website
-    list-type: none;
+#cover {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 3;
+  opacity: 0;
+  .transition(~"all .3s cubic-bezier(0.165, 0.84, 0.44, 1)");
+}
 
-    @photow: 15em;
-    @photoh: 10em;
-    li { // element format
-      display: inline-block;
-      position: relative;
+.photos { // general bulk photo format on website
+  list-type: none;
+
+  @photow: 15em;
+  @photoh: 10em;
+  li { // element format
+    display: inline-block;
+    position: relative;
+    width: @photow;
+    height: @photoh;
+    margin: 1.5em 1em;
+
+    @cOverlay: rgba(0,70,100,0.35);
+    .colorOverlay { // color filter
+      position: absolute;
+      background-color: @cOverlay;
+      border: 1px solid #a8b6c4; // covers img border
+      // border-radius: 3px;
       width: @photow;
       height: @photoh;
-      margin: 1.5em 1em;
+      z-index: 5;
+      opacity: 1;
+      .transition(~"opacity 0.25s ease-in-out");
+      &:hover { opacity: 0; } // fades on hover
+    }
 
-      @cOverlay: rgba(0,70,100,0.35);
-      .colorOverlay { // color filter
-        position: absolute;
-        background-color: @cOverlay;
-        border: 1px solid #a8b6c4; // covers img border
-        // border-radius: 3px;
-        width: @photow;
-        height: @photoh;
-        z-index: 5;
-        opacity: 1;
-        .transition(~"opacity 0.25s ease-in-out");
-        &:hover { opacity: 0; } // fades on hover
-      }
-
-      img { // basic image format
-        position: absolute;
-        // border-radius: 3px;
-        width: @photow;
-        opacity: 0.9;
-        border: 1px solid #c6d1de; // shows on hover
-        .drop-shadow(0, 0, 2px, #222);
-      }
+    img { // basic image format
+      position: absolute;
+      // border-radius: 3px;
+      width: @photow;
+      opacity: 0.9;
+      border: 1px solid #c6d1de; // shows on hover
+      .drop-shadow(0, 0, 2px, #222);
     }
   }
+}
 
 /******************** NAVIGATION BAR ********************/
 nav {
   .nopadmargin;
   top: 0.5em;
   position: fixed;
-  z-index: 2;
+  z-index: 10;
   width: 100vw;
 
   #navslide {

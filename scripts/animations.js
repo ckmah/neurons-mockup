@@ -74,6 +74,67 @@ function fadeOut($element) {
 }
 
 /**
+ * Fade and no zoom in on selected element.
+ * @param  $element Element to perform fadeIn on.
+ */
+function fadeInSimple($element) {
+  // reset
+  $element.removeAttr('style');
+  $element.css({
+    "webkitTransform": "scale(1)",
+    "MozTransform": "scale(1)",
+    "msTransform": "scale(1)",
+    "OTransform": "scale(1)",
+    "transform": "scale(1)",
+    "opacity": 0
+  });
+
+  // zoom and fade in after delay
+  setTimeout(function() {
+    $element.css({
+      "webkitTransform": "scale(1)",
+      "MozTransform": "scale(1)",
+      "msTransform": "scale(1)",
+      "OTransform": "scale(1)",
+      "transform": "scale(1)",
+      "opacity": 1
+    });
+  }, TRANSTIME);
+}
+
+/**
+ * Fade and zoom out on selected element
+ * @param  $element Element to perform fadeOut on.
+ */
+function fadeOutSimple($element) {
+  // reset
+  $element.removeAttr('style');
+  $element.css({
+    "webkitTransform": "scale(1)",
+    "MozTransform": "scale(1)",
+    "msTransform": "scale(1)",
+    "OTransform": "scale(1)",
+    "transform": "scale(1)",
+    "opacity": 1
+  });
+
+  // zoom out, fade out
+  $element.css({
+    "webkitTransform": "scale(1)",
+    "MozTransform": "scale(1)",
+    "msTransform": "scale(1)",
+    "OTransform": "scale(1)",
+    "transform": "scale(1)",
+    "opacity": 0
+  });
+
+  // hide after transition
+  setTimeout(function() {
+    $element.css('display', 'none');
+  }, TRANSTIME);
+}
+
+/**
  * Fade and slide in from left side selected element.
  * @param   $element  Element to perform fadeIn on.
  * @param   direction Can be up, down, left, or right

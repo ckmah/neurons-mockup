@@ -6,22 +6,12 @@
 
 .verticalcenter { margin: auto; position: absolute; top: 0; right: 0; }
 
-.gradient (@origin: left, @start: #ffffff, @stop: #000000) {
-    background-color: @start;
+.gradient (@origin, @start, @stop) {
     background-image: -webkit-linear-gradient(@origin, @start, @stop);
     background-image: -moz-linear-gradient(@origin, @start, @stop);
     background-image: -o-linear-gradient(@origin, @start, @stop);
     background-image: -ms-linear-gradient(@origin, @start, @stop);
     background-image: linear-gradient(@origin, @start, @stop);
-}
-
-.gradient3stop (@origin: left, @start: #000000, @middle: #ffffff, @stop: #000000) {
-    background-color: @start;
-    background-image: -webkit-radial-gradient(@origin, @start, @middle, @stop);
-    background-image: -moz-radial-gradient(@origin, @start, @middle, @stop);
-    background-image: -o-radial-gradient(@origin, @start, @middle, @stop);
-    background-image: -ms-radial-gradient(@origin, @start, @middle, @stop);
-    background-image: radial-gradient(@origin, @start, @middle, @stop);
 }
 
 .box-shadow (@x, @y, @blur, @color) {

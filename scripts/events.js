@@ -46,46 +46,34 @@ function animTimeline() {
  * Animation for clicked node
  */
 function animNode() {
-  // move node left
-  $activeNode.css({
-    "top": "0px",
-    "left": "0px"
-  });
-
   // expand node
-  setTimeout(function() {
     $activeNode.css({
       "webkitTransform": "scale(150)",
       "MozTransform": "scale(150)",
       "msTransform": "scale(150)",
       "OTransform": "scale(150)",
       "transform": "scale(150)",
-      "background": "black"
+      // "background": "black"
     });
-  }, 500);
 
   // fade node
   setTimeout(function() {
     $activeNode.css("opacity", 0);
-  }, 800);
+  }, 250);
 
   // hide timeline
   setTimeout(function() {
     $("#timeline").css("display", "none");
-  }, 1100);
+  }, 250);
 }
 
 /**
  * Animation for events subpages
  */
 function animPage() {
-
-  setTimeout(function() {
     $cover = $('#cover');
-    fadeIn($cover);
+    fadeInSimple($cover);
     $cover.css('display', 'block');
-
-  }, 250);
 
   // fade in corresponding pages
   $activePage = $('#page' + $activeNode.attr('id').substring(4)); // reference to page section
@@ -94,7 +82,7 @@ function animPage() {
     fadeIn($activePage);
     $img = $('#' + $activePage.attr('id') + ' .gallery_slides' + ' img:first-child');
     selectGalleryImage($img);
-  }, 1100);
+  }, 250);
 }
 
 /**
@@ -173,13 +161,13 @@ function setActiveImg($image) {
 
 function showGalleryControls() {
   fadeIn($arrows);
-  slideIn($slides, 'up');
+  fadeInSimple($slides, 'up');
 
 }
 
 function hideGalleryControls() {
   fadeOut($arrows);
-  slideOut($slides, 'down');
+  fadeOutSimple($slides, 'down');
 }
 
 function selectGalleryImage($image) {
